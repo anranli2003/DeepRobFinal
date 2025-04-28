@@ -1,0 +1,259 @@
+
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Deep Learning </title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="You’ve Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction" />
+<meta name="author" content="Parker Ewen" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Using multiple sensing modalities improves semantic predictions and enables complex task completion." />
+<meta property="og:description" content="Using multiple sensing modalities improves semantic predictions and enables complex task completion." />
+<link rel="canonical" href="https://roahmlab.github.io/multimodal_mapping/" />
+<meta property="og:url" content="https://roahmlab.github.io/multimodal_mapping/" />
+<meta property="og:site_name" content="You’ve Got to Feel It To Believe It Multi-Modal Bayesian Inference for Semantic and Property Prediction" />
+<meta property="og:image" content="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png" />
+<meta property="og:image:height" content="100" />
+<meta property="og:image:width" content="256" />
+<meta property="og:image:alt" content="Random Landscape" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-08T17:24:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png" />
+<meta name="twitter:image:alt" content="Random Landscape" />
+<meta property="twitter:title" content="You’ve Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Parker Ewen","url":"https://parkerewen.com"},"dateModified":"2024-02-08T17:24:00+00:00","datePublished":"2024-02-08T17:24:00+00:00","description":"Using multiple sensing modalities improves semantic predictions and enables complex task completion.","headline":"You’ve Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction","image":{"height":100,"width":256,"alt":"Random Landscape","url":"https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png","@type":"imageObject"},"name":"You’ve Got to Feel It To Believe It Multi-Modal Bayesian Inference for Semantic and Property Prediction","url":"https://roahmlab.github.io/multimodal_mapping/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="canonical" href="https://roahmlab.github.io/multimodal_mapping/" /><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Cabin:wght@300;400;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/multimodal_mapping/css/stylesheet.css">
+  
+    
+  
+    
+  
+    
+  
+    
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body><header class="page-header" role="banner">
+  <div class="wrapper">
+    <a class="page-title" rel="bookmark" href="https://roahmlab.github.io/multimodal_mapping/">You&#39;ve Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction</a>
+      <div class="page-description"><p>Using multiple sensing modalities improves semantic predictions and enables complex task completion.</p>
+</div>
+  </div>
+</header>
+<main class="content" aria-label="Content">
+      <div class="wrapper"><div class="authors">
+  <div class="box">
+    <div class="single">
+      <p class="name"><a href="https://parkerewen.com">Parker Ewen</a></p>
+        <p class="email">pewen@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Hao Chen</p>
+        <p class="email">haochern@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Yuzhen Chen</p>
+        <p class="email">yuzhench@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Anran Li</p>
+        <p class="email">anranli@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Anup Bagali</p>
+        <p class="email">abagali@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Gitesh Gunjal</p>
+        <p class="email">gitesh@umich.edu</p>
+    </div>
+    <div class="single">
+      <p class="name">Ram Vasudevan</p>
+        <p class="email">ramv@umich.edu</p>
+    </div>
+  </div>
+  <div class="footnote">
+  
+    <p>All authors affiliated with the Robotics Institute and department of Mechanical Engineering of the University of Michigan, Ann Arbor.</p>
+
+  
+  </div>
+</div>
+
+<div class="external-links">
+  <div class="box">
+    <div class="single">
+      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/arxiv.svg)"></i></div><p>arXiv</p><a href="https://arxiv.org/abs/2402.05872"></a></div>
+    <div class="single">
+      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg)"></i></div><p>Code</p><a href="https://github.com/ParkerEwen5441/KinfuROS"></a></div>
+  </div>
+</div>
+
+<!-- # [Content](#content)
+<div markdown="1" class="content-block grey justify no-pre">
+some text
+
+Try clicking this heading, this shows the manually defined header anchor, but if you do this, you should do it for all headings.
+</div>
+
+I made this look right by adding the `no-pre` class.
+If you don't include `markdown="1"` it will fail to render any markdown inside.
+
+You can also make fullwidth embeds (this doesn't actually link to any video)
+ -->
+<h1 id="demo-video">
+  
+  
+    Demo Video <a href="#demo-video" class="permalink">#</a>
+  
+  
+</h1>
+    
+<div class="fullwidth">
+<video controls="" width="100%">
+    <source src="https://github.com/ParkerEwen5441/github.io-multimodal_mapping/assets/48282126/bb4d10af-1db5-4dc7-bfc1-bc8a6cdf3bda" />
+</video>
+</div>
+
+<div class="content-block grey justify">
+<h1 id="abstract">
+  
+  
+    Abstract <a href="#abstract" class="permalink">#</a>
+  
+  
+</h1>
+    
+
+  <p>Robots must be able to understand their surroundings to perform complex tasks in challenging environments and many of these complex tasks require estimates of physical properties such as friction or weight.
+Estimating such properties using learning is challenging due to the large amounts of labelled data required for training and the difficulty of updating these learned models online at run time.
+To overcome these challenges, this paper introduces a novel, multi-modal approach for representing semantic predictions and physical property estimates jointly in a probabilistic manner.
+By using conjugate pairs, the proposed method enables closed-form Bayesian updates given visual and tactile measurements without requiring additional training data.
+The efficacy of the proposed algorithm is demonstrated through several hardware experiments. 
+In particular, this paper illustrates that by conditioning semantic classifications on physical properties, the proposed method quantitatively  outperforms state-of-the-art semantic classification methods that rely on vision alone.
+To further illustrate its utility, the proposed method is used in several applications including to represent affordance-based properties probabilistically and a challenging terrain traversal task using a legged robot.
+In the latter task, the proposed method represents the coefficient of friction of the terrain probabilistically, which enables the use of an on-line risk-aware planner that switches the legged robot from a dynamic gait to a static, stable gait when the expected value of the coefficient of friction falls below a given threshold.
+Videos of these case studies are shown above.</p>
+
+  <p align="center">
+<img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png" class="img-responsive" alt="" width="500" height="500" />
+</p>
+
+  <p>The method proposed in this paper jointly estimates semantic classifications and physical properties by combining visual and tactile data into a single semantic mapping framework. 
+RGB-D images are used to build a metric-semantic map that iteratively estimates semantic labels. 
+A property measurement is taken which in turn updates both the semantic class predictions and physical property estimates. 
+In the depicted example, the robot is unsure if the terrain in front of it is snow or ice from vision measurements alone (prior estimates) which dramatically affects the coefficient of friction and the associated gait that can be applied to safely traverse the terrain.
+The robot uses a tactile sensor attached to its manipulator to update its coefficient of friction estimation (posterior estimates), which then enables it to change gaits to cross the ice safely.</p>
+</div>
+<h1 id="method">
+  
+  
+    Method <a href="#method" class="permalink">#</a>
+  
+  
+</h1>
+    
+
+<p>A flow diagram illustrating our proposed mutli-modal mapping algorithm.
+A semantic classification algorithm predicts pixel-wise classes from RGB images that are then projected into a common mapping frame using the aligned depth image, camera intrinsics, and estimated camera pose. 
+This semantic point cloud is used to build a metric-semantic map. 
+When a property measurement is taken, the method of moments is used to update the semantic and property estimates jointly.</p>
+
+<p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/RSS_flow_diagram_updated.jpeg" alt="Flow diagram for multi-modal mapping" title="Flow Diagram" /></p>
+
+<p>We use a custom implementation of the <a href="https://github.com/NVlabs/SegFormer">SegFormer network</a> trained on the <a href="https://github.com/apple/ml-dms-dataset">Dense Material Segmentation Dataset</a>.
+The output of the network is then post-processed with a segment-based voting scheme using <a href="https://github.com/CASIA-IVA-Lab/FastSAM">FastSAM</a>.
+When a property measurement is taken, the method of moments updates a region of the geometric representation segmented using FastSAM.
+This incentivizes regions with spatial proximity and visual similarity to be updated using a single measurement rather than requiring one measurement for each voxel, making the algorithm more efficient. 
+For hardware demonstrations, static friction measurements are taken using a force-torque sensor which measures contact forces during the motion of an end-effector against a surface.</p>
+
+<div class="content-block grey justify">
+<h1 id="simulation-results">
+  
+  
+    Simulation Results <a href="#simulation-results" class="permalink">#</a>
+  
+  
+</h1>
+    
+
+  <p>We validate our approach in simulation and demonstrate property measurements improve semantic predictions.
+We use 1800 images and ground-truth semantic labels taken from the testing set of the <a href="https://github.com/apple/ml-dms-dataset">Dense Material Segmentation Dataset</a> and a pre-trained semantic segmentation neural network is used to predict semantic labels.
+Misclassified pixels in each image are randomly selected and a friction measurement is drawn from a Gaussian distribution using the corresponding ground-truth semantic label.</p>
+
+  <p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/sim_results.png" alt="Simulation results for multi-modal mapping" title="Simulation Results" /></p>
+
+  <p>Results for a single simulated experiment are shown above.
+The image (a) and ground truth semantic labels (b) are from the Dense Material Segmentation Dataset. The semantic segmentation predictions (c) do not classify parts of the desk as wood.
+The method of moments then computes the correct posterior semantic label (d).</p>
+
+  <p>The mean pixel-wise accuracy of the semantic segmentation network over this dataset without applying the proposed algorithm is 27.2\%.
+The mean pixel accuracy of the posterior semantic predictions output by Algorithm \ref{alg:moments} is 33.0\%, an increase of 21.3\%, demonstrating increased semantic prediction performance compared to semantic predictions using vision alone.
+This experiment highlights that by conditioning semantic classifications on physical properties, one can generally improve the accuracy of visual semantic classifications.</p>
+
+</div>
+<h1 id="hardware-demonstrations">
+  
+  
+    Hardware Demonstrations <a href="#hardware-demonstrations" class="permalink">#</a>
+  
+  
+</h1>
+    
+
+<p>We further validate our method on several hardware demonstrations and compare against existing semantic mapping and property estimation approaches.</p>
+
+<p>The end-effector of a Kinova Gen 3 robotic arm and a Spot Arm are used to collect friction measurements using built-in wrist-mounted force-torque sensors.
+For this experiment, 5 frames from the RGB-D stream are used to initialize the semantic TSDF map.
+Each RGB-D image is semantically segmented using the trained network and projected into the global coordinate frame using the aligned depth image.
+The recursive vision-based semantic update is applied for each semantic point cloud.
+This initializes the Dirichlet parameters used to compute the initial semantic classification weights for the measurement likelihood.</p>
+
+<p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/hardware_results.png" alt="Hardware demonstrations for multi-modal mapping" title="Hardware Demonstrations" /></p>
+
+<p>We compare our approach to the recursive semantic mapping approach of <a href="https://github.com/roahmlab/sel_map">selmap</a> which only uses vision.
+The same SegFormer-FastSAM semantic segmentation network is used for both methods.
+As shown in in the above demonstration, the network incorrectly classifies various objects in the scenes.
+When only vision-based semantic classifications are considered, the erroneous predictions from the network are unable to be corrected by selmap.
+Using the proposed method, a user specifies the location for friction measurements to be taken.
+The method of moments then computes the posterior semantic classification weights using the friction measurements as input.
+This corrects the expected semantic classification.
+We ran the experiment on two indoor scenes with two friction measurements each and show the semantic prediction accuracy increases using the proposed method and matches the ground-truth semantic labels.</p>
+
+<p>We demonstrate the utility of our proposed property estimation method using a case study involving a challenging legged locomotion traversal task of crossing an icy surface and, likewise, on a case study for affordance-based property estimation.
+These two case studies are presented in the above video.</p>
+
+<div class="content-block grey justify">
+<h1 id="citation">
+  
+  
+    Citation <a href="#citation" class="permalink">#</a>
+  
+  
+</h1>
+    
+
+  <p>This project was developed in <a href="http://www.roahmlab.com/">Robotics and Optimization for Analysis of Human Motion (ROAHM) Lab</a> at University of Michigan - Ann Arbor.</p>
+
+  <div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@article</span><span class="p">{</span><span class="nl">ewen2024feelit</span><span class="p">,</span>
+  <span class="na">author</span>  <span class="p">=</span> <span class="s">"Ewen, Parker and Chen, Hao and Chen, Yuzhen and Li, Anran and Bagali, Anup and Gunjal, Gitesh and Vasudevan, Ram"</span><span class="p">,</span>
+  <span class="na">title</span>   <span class="p">=</span> <span class="s">"You've Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction"</span><span class="p">,</span>
+  <span class="na">journal</span> <span class="p">=</span> <span class="s">"Robotics: Science and Systems"</span><span class="p">,</span>
+  <span class="na">year</span>    <span class="p">=</span> <span class="m">2024</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+</div>
+
+      </div>
+    </main>
+
+</body>
+</html>
+
