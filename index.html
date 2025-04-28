@@ -132,69 +132,37 @@ You can also make fullwidth embeds (this doesn't actually link to any video)
 <p>A flow diagram illustrating our proposed mutli-modal perceptual integration.
   The pipeline follows a layered structure moving from language to image, point cloud, and finally pose. It begins with sensor setup and extrinsic calibration using an Azure Kinect, AprilTag, and optical motion capture, solving camera extrinsics via a Procrustes optimization. A language command is processed by a fine-tuned Grounding-DINO model to localize a 2D target, followed by instance segmentation with a domain-adapted SAM model to generate dense 3D point clouds. Finally, key points are extracted, descriptors are computed, and coarse point cloud registration is performed for pose estimation.</p>
 
-<p><img src="assets/pipeline.png" alt="Flow diagram for multi-modal perceptual integration" title="Flow Diagram" /></p>
+  <p><img src="assets/pipeline.png" alt="Flow diagram for multi-modal perceptual integration" title="Flow Diagram" /></p>
 
-<p>We use a custom implementation of the <a href="https://github.com/NVlabs/SegFormer">SegFormer network</a> trained on the <a href="https://github.com/apple/ml-dms-dataset">Dense Material Segmentation Dataset</a>.
-The output of the network is then post-processed with a segment-based voting scheme using <a href="https://github.com/CASIA-IVA-Lab/FastSAM">FastSAM</a>.
-When a property measurement is taken, the method of moments updates a region of the geometric representation segmented using FastSAM.
-This incentivizes regions with spatial proximity and visual similarity to be updated using a single measurement rather than requiring one measurement for each voxel, making the algorithm more efficient. 
-For hardware demonstrations, static friction measurements are taken using a force-torque sensor which measures contact forces during the motion of an end-effector against a surface.</p>
-
-<div class="content-block grey justify">
-<h1 id="simulation-results">
+  <!-- <p></p> -->
   
-  
-    Simulation Results <a href="#simulation-results" class="permalink">#</a>
-  
-  
-</h1>
+  <div class="content-block grey justify">
+    <h1 id="experiment-results">
+        Experiment Results <a href="#experiment-results" class="permalink">#</a>
+    </h1>
+    
+    <p>To demonstrate the real-world performance of our proposed pipeline, we established a custom experimental workspace and collected our own dataset for fine-tuning and evaluation. Our setup included an Azure Kinect camera positioned in front of a workspace, a Kinova robotic arm with an AprilTag mounted to its end-effector, and an activated OptiTrack motion capture system for precise ground truth collection. We performed hand-eye calibration by moving the arm to different positions. Three distinct target objects—a square, circle, and triangle—were suspended at varying positions, each marked with at least three fiducial markers.</p>
+    
+    <p>For data preparation, we recorded synchronized RGB-D sequences and 3D trajectories. Although the Azure Kinect and OptiTrack systems were activated roughly at the same time, we performed fine synchronization using key event matching and addressed the difference in frame rates (30 fps vs. 100 fps) with a bidirectional time index mapping. To annotate masks for fine-tuning SAMv2, we leveraged color contrast for coarse masks and refined them using depth thresholding, isolating individual objects cleanly even when parts of the Kinova arm overlapped. With precise masks and bounding boxes, we prepared high-quality training data for fine-tuning GroundingDINO and SAMv2 for our target domain.</p>
+    
+    <p><img src="assets/results.png" alt="Experiment setup for real-world fine-tuning" title="Experimental Setup" /></p>
+    
+    <p>We fine-tuned GroundingDINO using open-source guidelines and further fine-tuned SAMv2 using our annotated dataset. The results demonstrate that our approach enables more accurate localization and segmentation of objects under real-world conditions, validating the effectiveness of the proposed layered pipeline that progresses from language input to 3D pose estimation.</p>
+    
+    </div>
+    
+    <h1 id="hardware-demonstrations">
+        Hardware Demonstrations <a href="#hardware-demonstrations" class="permalink">#</a>
+    </h1>
+    
+    <p>We further validated our method through hardware demonstrations using the Kinova Gen 3 robotic arm. After fine-tuning, we evaluated the system by issuing language commands to detect and localize specified target objects in the workspace. The system successfully processed language input, localized objects in 2D through GroundingDINO, generated instance masks with SAMv2, and lifted 2D segmentations to 3D using depth information. We registered these lifted points with the ground-truth poses obtained from the OptiTrack system, enabling precise localization of target objects for robotic manipulation.</p>
+    
+    <p><img src="assets/hardware_results.png" alt="Hardware demonstration results" title="Hardware Demonstrations" /></p>
+    
+    <p>These experiments validate that our multi-modal pipeline can operate effectively with minimal supervision, accurately linking natural language queries to real-world 3D object poses. Our approach demonstrates robustness even when facing noisy depth readings or minor visual ambiguities, providing a practical pathway for language-driven robotic perception and manipulation tasks.</p>
     
 
-  <p>We validate our approach in simulation and demonstrate property measurements improve semantic predictions.
-We use 1800 images and ground-truth semantic labels taken from the testing set of the <a href="https://github.com/apple/ml-dms-dataset">Dense Material Segmentation Dataset</a> and a pre-trained semantic segmentation neural network is used to predict semantic labels.
-Misclassified pixels in each image are randomly selected and a friction measurement is drawn from a Gaussian distribution using the corresponding ground-truth semantic label.</p>
-
-  <p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/sim_results.png" alt="Simulation results for multi-modal mapping" title="Simulation Results" /></p>
-
-  <p>Results for a single simulated experiment are shown above.
-The image (a) and ground truth semantic labels (b) are from the Dense Material Segmentation Dataset. The semantic segmentation predictions (c) do not classify parts of the desk as wood.
-The method of moments then computes the correct posterior semantic label (d).</p>
-
-  <p>The mean pixel-wise accuracy of the semantic segmentation network over this dataset without applying the proposed algorithm is 27.2\%.
-The mean pixel accuracy of the posterior semantic predictions output by Algorithm \ref{alg:moments} is 33.0\%, an increase of 21.3\%, demonstrating increased semantic prediction performance compared to semantic predictions using vision alone.
-This experiment highlights that by conditioning semantic classifications on physical properties, one can generally improve the accuracy of visual semantic classifications.</p>
-
-</div>
-<h1 id="hardware-demonstrations">
-  
-  
-    Hardware Demonstrations <a href="#hardware-demonstrations" class="permalink">#</a>
-  
-  
-</h1>
     
-
-<p>We further validate our method on several hardware demonstrations and compare against existing semantic mapping and property estimation approaches.</p>
-
-<p>The end-effector of a Kinova Gen 3 robotic arm and a Spot Arm are used to collect friction measurements using built-in wrist-mounted force-torque sensors.
-For this experiment, 5 frames from the RGB-D stream are used to initialize the semantic TSDF map.
-Each RGB-D image is semantically segmented using the trained network and projected into the global coordinate frame using the aligned depth image.
-The recursive vision-based semantic update is applied for each semantic point cloud.
-This initializes the Dirichlet parameters used to compute the initial semantic classification weights for the measurement likelihood.</p>
-
-<p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/hardware_results.png" alt="Hardware demonstrations for multi-modal mapping" title="Hardware Demonstrations" /></p>
-
-<p>We compare our approach to the recursive semantic mapping approach of <a href="https://github.com/roahmlab/sel_map">selmap</a> which only uses vision.
-The same SegFormer-FastSAM semantic segmentation network is used for both methods.
-As shown in in the above demonstration, the network incorrectly classifies various objects in the scenes.
-When only vision-based semantic classifications are considered, the erroneous predictions from the network are unable to be corrected by selmap.
-Using the proposed method, a user specifies the location for friction measurements to be taken.
-The method of moments then computes the posterior semantic classification weights using the friction measurements as input.
-This corrects the expected semantic classification.
-We ran the experiment on two indoor scenes with two friction measurements each and show the semantic prediction accuracy increases using the proposed method and matches the ground-truth semantic labels.</p>
-
-<p>We demonstrate the utility of our proposed property estimation method using a case study involving a challenging legged locomotion traversal task of crossing an icy surface and, likewise, on a case study for affordance-based property estimation.
-These two case studies are presented in the above video.</p>
 
 <div class="content-block grey justify">
 <h1 id="citation">
