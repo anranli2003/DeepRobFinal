@@ -71,9 +71,9 @@
 <div class="external-links">
   <div class="box">
     <div class="single">
-      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/arxiv.svg)"></i></div><p>arXiv</p><a href="https://arxiv.org/abs/2402.05872"></a></div>
+      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/arxiv.svg)"></i></div><p>Report</p><a href="https://arxiv.org/abs/2402.05872"></a></div>
     <div class="single">
-      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg)"></i></div><p>Code</p><a href="https://github.com/ParkerEwen5441/KinfuROS"></a></div>
+      <div class="icon"><i class="si-wrapper" style="background-image: url(https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg)"></i></div><p>Code</p><a href="https://github.com/yuzhench/EECS498_004-final-project-"></a></div>
   </div>
 </div>
 
@@ -99,7 +99,7 @@ You can also make fullwidth embeds (this doesn't actually link to any video)
     
 <div class="fullwidth">
 <video controls="" width="100%">
-    <source src="https://github.com/ParkerEwen5441/github.io-multimodal_mapping/assets/48282126/bb4d10af-1db5-4dc7-bfc1-bc8a6cdf3bda" />
+    <source src="/assets/rob498 demo.mp4" />
 </video>
 </div>
 
@@ -113,26 +113,13 @@ You can also make fullwidth embeds (this doesn't actually link to any video)
 </h1>
     
 
-  <p>Robots must be able to understand their surroundings to perform complex tasks in challenging environments and many of these complex tasks require estimates of physical properties such as friction or weight.
-Estimating such properties using learning is challenging due to the large amounts of labelled data required for training and the difficulty of updating these learned models online at run time.
-To overcome these challenges, this paper introduces a novel, multi-modal approach for representing semantic predictions and physical property estimates jointly in a probabilistic manner.
-By using conjugate pairs, the proposed method enables closed-form Bayesian updates given visual and tactile measurements without requiring additional training data.
-The efficacy of the proposed algorithm is demonstrated through several hardware experiments. 
-In particular, this paper illustrates that by conditioning semantic classifications on physical properties, the proposed method quantitatively  outperforms state-of-the-art semantic classification methods that rely on vision alone.
-To further illustrate its utility, the proposed method is used in several applications including to represent affordance-based properties probabilistically and a challenging terrain traversal task using a legged robot.
-In the latter task, the proposed method represents the coefficient of friction of the terrain probabilistically, which enables the use of an on-line risk-aware planner that switches the legged robot from a dynamic gait to a static, stable gait when the expected value of the coefficient of friction falls below a given threshold.
-Videos of these case studies are shown above.</p>
+  <p>In this project, we present a real-time, language-guided 6D object pose estimation pipeline that integrates modern vision-language models with classical 3D geometric techniques. Our pipeline begins with a fine-tuned Grouding-DINO model for language-guided object localization and a fine-tuned Segment Anything Model 2 (SAM2) for instance segmentation. To achieve accurate 3D reconstruction, we performed extrinsic calibration between an Azure Kinect RGB-D camera and a motion capture system. Point cloud data are generated from the depth information provided by Kinect, from which points belonging to the target object are selected by back-projecting the segmented 2D image region. This is followed by key-point extraction, FPFH-based correspondence matching, and coarse pose estimation using RANSAC-based algorithms. The final pose refinement is then obtained through an Iterative Closest Point (ICP) algorithm. We validate the full pipeline through experiments and report pose estimation accuracy and performance rate, demonstrating the system's ability to operate effectively in real-time. </p>
 
   <p align="center">
-<img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png" class="img-responsive" alt="" width="500" height="500" />
+<img src="assets/IMG_8013.jpg" class="img-responsive" alt="" width="500" height="500" />
 </p>
 
-  <p>The method proposed in this paper jointly estimates semantic classifications and physical properties by combining visual and tactile data into a single semantic mapping framework. 
-RGB-D images are used to build a metric-semantic map that iteratively estimates semantic labels. 
-A property measurement is taken which in turn updates both the semantic class predictions and physical property estimates. 
-In the depicted example, the robot is unsure if the terrain in front of it is snow or ice from vision measurements alone (prior estimates) which dramatically affects the coefficient of friction and the associated gait that can be applied to safely traverse the terrain.
-The robot uses a tactile sensor attached to its manipulator to update its coefficient of friction estimation (posterior estimates), which then enables it to change gaits to cross the ice safely.</p>
-</div>
+ </div>
 <h1 id="method">
   
   
@@ -142,12 +129,10 @@ The robot uses a tactile sensor attached to its manipulator to update its coeffi
 </h1>
     
 
-<p>A flow diagram illustrating our proposed mutli-modal mapping algorithm.
-A semantic classification algorithm predicts pixel-wise classes from RGB images that are then projected into a common mapping frame using the aligned depth image, camera intrinsics, and estimated camera pose. 
-This semantic point cloud is used to build a metric-semantic map. 
-When a property measurement is taken, the method of moments is used to update the semantic and property estimates jointly.</p>
+<p>A flow diagram illustrating our proposed mutli-modal perceptual integration.
+  The pipeline follows a layered structure moving from language to image, point cloud, and finally pose. It begins with sensor setup and extrinsic calibration using an Azure Kinect, AprilTag, and optical motion capture, solving camera extrinsics via a Procrustes optimization. A language command is processed by a fine-tuned Grounding-DINO model to localize a 2D target, followed by instance segmentation with a domain-adapted SAM model to generate dense 3D point clouds. Finally, key points are extracted, descriptors are computed, and coarse point cloud registration is performed for pose estimation.</p>
 
-<p><img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/RSS_flow_diagram_updated.jpeg" alt="Flow diagram for multi-modal mapping" title="Flow Diagram" /></p>
+<p><img src="assets/pipeline.png" alt="Flow diagram for multi-modal perceptual integration" title="Flow Diagram" /></p>
 
 <p>We use a custom implementation of the <a href="https://github.com/NVlabs/SegFormer">SegFormer network</a> trained on the <a href="https://github.com/apple/ml-dms-dataset">Dense Material Segmentation Dataset</a>.
 The output of the network is then post-processed with a segment-based voting scheme using <a href="https://github.com/CASIA-IVA-Lab/FastSAM">FastSAM</a>.
